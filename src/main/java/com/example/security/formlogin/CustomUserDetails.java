@@ -10,11 +10,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.example.model.User;
 import com.example.security.LoginUser;
 
+// 일반 로그인처리에 필요한 사용자 정보를 표현하는 클래스
 public class CustomUserDetails extends LoginUser implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
+	// 회원아이디
 	private String username;
+	// 회원비밀번호
 	private String password;
+	// 회원의 접근권한
 	private Collection<? extends GrantedAuthority> authorities;
 	
 	public CustomUserDetails(User user) {
