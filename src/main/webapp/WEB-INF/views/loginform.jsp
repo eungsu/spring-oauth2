@@ -50,6 +50,12 @@
 			</form>
 		</div>
 	</div>
+	<div class="row mb-3"></div>
+		<div class="col-10">
+			<a href="/oauth2/authorization/google" class="btn btn-outline-primary">구글 로그인</a>
+			<a href="/oauth2/authorization/kakao" class="btn btn-outline-primary">카카오 로그인</a>
+		</div>
+	</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

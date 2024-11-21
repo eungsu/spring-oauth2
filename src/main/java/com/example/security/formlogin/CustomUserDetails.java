@@ -1,4 +1,4 @@
-package com.example.security;
+package com.example.security.formlogin;
 
 import java.util.Collection;
 import java.util.List;
@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.model.User;
+import com.example.security.LoginUser;
 
 public class CustomUserDetails extends LoginUser implements UserDetails {
 

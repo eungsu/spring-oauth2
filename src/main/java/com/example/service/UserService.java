@@ -33,6 +33,7 @@ public class UserService {
 		User user = modelMapper.map(request, User.class);
 		// 비밀번호를 암호화해서 User객체에 저장한다.
 		user.setPassword(passwordEncoder.encode(request.getPassword()));
+		user.setProvider("local");
 		// 기본적으로 신규 사용자의 접근 권한은 ROLE_USER 권한이다.
 		user.setRole(ERole.ROLE_USER);
 		

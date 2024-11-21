@@ -10,6 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.example.security.oauth2.CustomOAuth2UserService;
+
 import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +19,8 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
+	private final CustomOAuth2UserService customOAuth2UserService;
 
 	@Bean
 	PasswordEncoder passwordEncoder() {
@@ -33,13 +37,18 @@ public class SecurityConfig {
 				.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
 				.requestMatchers("/resources/**").permitAll()
 				.requestMatchers("/h2-console/**").permitAll()
-				.requestMatchers("/home", "/signup", "/login", "/logout", "/completed").permitAll()
+				.requestMatchers("/home", "/signup", "/oauth2/**", "/login", "/login/**", "/logout", "/completed").permitAll()
 				.anyRequest().authenticated())
 			.formLogin(formLogin -> formLogin
 				.loginPage("/login")
 				.loginProcessingUrl("/login")
 				.defaultSuccessUrl("/home")
 				.failureUrl("/login?error=fail"))
+			.oauth2Login(oauth2Login -> oauth2Login
+				.loginPage("/login")
+				.defaultSuccessUrl("/home")
+				.userInfoEndpoint(userInfo -> userInfo
+					.userService(customOAuth2UserService)))
 			.logout(logout -> logout
 				.logoutUrl("/logout")
 				.logoutSuccessUrl("/home")

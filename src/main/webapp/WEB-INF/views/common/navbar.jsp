@@ -24,7 +24,10 @@
 				</security:authorize>
 				<security:authorize access="isAuthenticated()">
 					<li class="nav-item">
-						<a class="nav-link" aria-current="page" href="/logout">로그아웃</a>
+						<a class="nav-link" aria-current="page" href="/logout">
+							<security:authentication property="principal.nickname"/>
+							로그아웃
+						</a>
 					</li>
 				</security:authorize>
 			</ul>
